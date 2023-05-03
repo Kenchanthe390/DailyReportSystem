@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+header {
+    display: flex;              /* フレックスボックスレイアウトを使用するための宣言 */
+    margin: 0 auto;             /* マージンは不要 */
+    width: 0 auto;              /* 横幅いっぱいまで利用する */
+    color:#ffffff;              /* 文字色は白 */
+    background-color:#000000;   /* 背景色は黒 */
+}
+
+#header_navi ul {
+    list-style: none;       /* noneでアイコンをなくす */
+    margin: 0px;            /* コンテンツエリアのマージンをなくす */
+    padding: 0px;           /* コンテンツエリアのパディングをなくす */
+    display: flex;          /* 各要素を横並びにする */
+    height: 60px;           /* コンテンツエリアの縦幅を60pxにする */
+    align-items: flex-end;  /* コンテンツエリアを下揃えにする */
+}
+
+#header_navi ul li {
+    width: 250px;
+    text-align: center;     /* 文字を中心に配置する */
+}
+
+#header_navi ul li.sysname {
+    font-size: 30px;        /* フォントサイズを30pxにする*/
+}
+
+main {
+  margin-top: -15px; /* 上の空白を50pxに指定 */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: solid 1px black;
+    padding: 10px 20px;
+}

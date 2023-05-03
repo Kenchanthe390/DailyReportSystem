@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>List of Employee</title>
+    <link rel="stylesheet" th:href="@{/css/employee/list.css}">
+</head>
+<body>
+    <header>
+        <nav id="header_navi">
+            <ul>
+                <li class="sysname">日報管理システム</li>
+                <li class="other">従業員管理</li>
+                <li>日報管理</li>
+                <li>（ログイン従業員）さん</li>
+                <li>ログアウト</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <h2>従業員 一覧</h2>
+    <table>
+        <tr>
+            <th>従業員番号</th>
+            <th>氏名</th>
+            <th>詳細確認</th>
+        </tr>
+        <tr th:each="employee : ${employeelist}">
+            <td th:text="${employee.authentication.code}"></td>
+            <td th:text="${employee.name}"></td>
+            <td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を確認する</a></td>
+        </tr>
+    </table>
+    <p>(全n件) ※JSでカウント処理を後ほど追加する</p>
+    <a th:href="@{/employee/register}">新規従業員の登録</a>
+    </main>
+</body>
+</html>
