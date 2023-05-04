@@ -30,11 +30,3 @@ main {
   margin-top: -15px; /* 上の空白を50pxに指定 */
 }
 
-table {
-    border-collapse: collapse;
-}
-
-th, td {
-    border: solid 1px black;
-    padding: 10px 20px;
-}

@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <title>List of Employee</title>
     <link rel="stylesheet" th:href="@{/css/employee/list.css}">
+    <script>
+        function getRowCol(){
+        //行数取得
+        var row = tbl1.rows.length;
+        //結果表示
+        alert("(全" + row + "件)");
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -19,7 +27,7 @@
     </header>
     <main>
     <h2>従業員 一覧</h2>
-    <table>
+    <table id="list">
         <tr>
             <th>従業員番号</th>
             <th>氏名</th>
@@ -28,10 +36,17 @@
         <tr th:each="employee : ${employeelist}">
             <td th:text="${employee.authentication.code}"></td>
             <td th:text="${employee.name}"></td>
-            <td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を確認する</a></td>
+            <td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を見る</a></td>
         </tr>
     </table>
-    <p>(全n件) ※JSでカウント処理を後ほど追加する</p>
+    <!-- テーブルのデータ件数を表示するJS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    var rowCount = $('#list tr').length  -1 ;
+    document.write("(全 " + rowCount + " 件)");
+    </script>
+    <br>
+    <br>
     <a th:href="@{/employee/register}">新規従業員の登録</a>
     </main>
 </body>

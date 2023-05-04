@@ -44,9 +44,8 @@ public class EmployeeController {
     /** 従業員の登録処理 */
     @PostMapping("/register")
     public String postRegister(Employee employee) {
-        employee.setName("yamada");
         service.saveEmployee(employee);     // 従業員の登録する
-        return "redirect:/employee/list";       // 従業員の一覧画面にリダイレクトする
+        return "redirect:/employee/list";   // 従業員の一覧画面にリダイレクトする
     }
 
     /** 従業員の更新画面を表示 */
