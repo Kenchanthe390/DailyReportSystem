@@ -4,47 +4,39 @@
     <meta charset="utf-8">
     <title>List of Employee</title>
     <link rel="stylesheet" th:href="@{/css/employee/list.css}">
-    <script>
-        function getRowCol(){
-        //行数取得
-        var row = tbl1.rows.length;
-        //結果表示
-        alert("(全" + row + "件)");
-        }
-    </script>
 </head>
 <body>
     <header>
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li class="other">従業員管理</li>
-                <li>日報管理</li>
+                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <li><a th:href="@{/}">日報管理</a></li>
                 <li>（ログイン従業員）さん</li>
-                <li>ログアウト</li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
             </ul>
         </nav>
     </header>
     <main>
-    <h2>従業員 一覧</h2>
-    <table id="list">
-        <tr>
-            <th>従業員番号</th>
-            <th>氏名</th>
-            <th>詳細確認</th>
-        </tr>
-        <tr th:each="employee : ${employeelist}">
-            <td th:text="${employee.authentication.code}"></td>
-            <td th:text="${employee.name}"></td>
-            <td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を見る</a></td>
-        </tr>
-    </table>
-    <!-- テーブルのデータ件数を表示するJS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    var rowCount = $('#list tr').length  -1 ;
-    document.write("(全 " + rowCount + " 件)");
-    </script>
+        <h2>従業員 一覧</h2>
+        <table id="list">
+            <tr>
+                <th>従業員番号</th>
+                <th>氏名</th>
+                <th>詳細確認</th>
+            </tr>
+            <tr th:each="employee : ${employeelist}">
+                <td th:text="${employee.authentication.code}"></td>
+                <td th:text="${employee.name}"></td>
+                <td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細を見る</a></td>
+            </tr>
+        </table>
+        <!-- テーブルのデータ件数を表示するJS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        var rowCount = $('#list tr').length  -1 ;
+        document.write("(全 " + rowCount + " 件)");
+        </script>
     <br>
     <br>
     <a th:href="@{/employee/register}">新規従業員の登録</a>

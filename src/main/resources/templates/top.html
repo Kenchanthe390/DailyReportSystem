@@ -2,9 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Tutorial of Thymeleaf</title>
+    <title>Top Page of DailyReportSystem</title>
+    <link rel="stylesheet" th:href="@{/css/top.css}">
 </head>
 <body>
-    <h1>日報管理システム</h1>
+    <header>
+        <nav id="header_navi">
+            <ul>
+                <li class="sysname">日報管理システム</li>
+                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <li><a th:href="@{/}">日報管理</a></li>
+                                <li>（ログイン従業員）さん</li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>日報管理システムへようこそ</h2>
+    <h3>【自分の日報一覧】 ※改修中</h3>
 </body>
 </html>

@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Update of Employee</title>
-    <link rel="stylesheet" th:href="@{/css/employee/detail.css}">
+    <link rel="stylesheet" th:href="@{/css/employee/update.css}">
 </head>
 <body>
     <header>
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li class="other">従業員管理</li>
-                <li>日報管理</li>
+                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <li><a th:href="@{/}">日報管理</a></li>
                 <li>（ログイン従業員）さん</li>
-                <li>ログアウト</li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
             </ul>
         </nav>
     </header>

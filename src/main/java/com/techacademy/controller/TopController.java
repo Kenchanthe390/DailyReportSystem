@@ -8,6 +8,6 @@ public class TopController {
 
     @GetMapping("/")            //URLに対する「GETメソッド」を受け取る関するであることを示すアノテーション
     public String getTop() {
-        return "top";          //list.htmlに画面遷移
+        return "/top";          //top.htmlに画面遷移
     }
 }
