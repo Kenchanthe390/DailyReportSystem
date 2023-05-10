@@ -58,7 +58,7 @@ public class EmployeeController {
     /**  従業員の更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
-        service.saveEmployee(employee);
+        service.updateEmployee(employee);
         return "redirect:/employee/list";
     }
 

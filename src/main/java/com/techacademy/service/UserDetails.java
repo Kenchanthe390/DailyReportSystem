@@ -1,5 +1,5 @@
 package com.techacademy.service;
 
-public interface EmployeeDetails {
+public interface UserDetails {
 
 }

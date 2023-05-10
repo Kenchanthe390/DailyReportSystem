@@ -47,3 +47,8 @@ th, td {
     border: solid 1px black;
     padding: 10px 20px;
 }
+
+input.content{
+    width:600px;
+    height:200px;
+}

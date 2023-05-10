@@ -47,6 +47,18 @@ public class EmployeeService {
         return employeeRepository.save(employee);       //saveメソッドは、引数で渡したエンティティインスタンスのデータをテーブルに保存する
     }
 
+    /** 従業員を更新する */
+    @Transactional      //saveEmployeeメソッドはデータベース更新用のメソッドであるため、@Transactionalアノテーションを指定する
+    public Employee updateEmployee(Employee employee) {
+        LocalDateTime timeOfUpdated = LocalDateTime.now();              //タイムスタンプを取得し、「更新日時」にセットする
+        String password = employee.getAuthentication().getPassword();   //入力されたパスワードを暗号化し、再度セットする
+        employee.setUpdated_at(timeOfUpdated);
+        employee.setDelete_flag(0);
+        employee.getAuthentication().setPassword(passwordEncoder.encode(password));
+        employee.getAuthentication().setEmployee(employee);
+        return employeeRepository.save(employee);       //saveメソッドは、引数で渡したエンティティインスタンスのデータをテーブルに保存する
+    }
+
     /** 従業員を削除する */
     @Transactional
     public void deleteEmployee(Employee employee) {

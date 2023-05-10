@@ -1,6 +1,10 @@
 INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("煌木　太郎", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
 INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("田中　太郎", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
-INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("テスト　太郎", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
+INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("山田　太郎", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
 INSERT INTO authentication(code, password, role, employee_id) VALUES ("ktaro", "$2a$08$clh9XaYYznpX9WDqySgiCuUu4znpSeu2oJi5l2Q00UJs42Llrbd7S", "管理者", 1);
 INSERT INTO authentication(code, password, role, employee_id) VALUES ("ttaro", "$2a$10$F1k.2HZtkRpoSDymdZCTnuI7eVdoKP.Yb8gtiWmVTKejp53Htlm56", "一般", 2);
-INSERT INTO authentication(code, password, role, employee_id) VALUES ("ttest", "$2a$10$F1k.2HZtkRpoSDymdZCTnuI7eVdoKP.Yb8gtiWmVTKejp53Htlm56", "管理者", 3);
+INSERT INTO authentication(code, password, role, employee_id) VALUES ("tyamada", "$2a$10$F1k.2HZtkRpoSDymdZCTnuI7eVdoKP.Yb8gtiWmVTKejp53Htlm56", "管理者", 3);
+INSERT INTO report(id, content, created_at, report_date, title, updated_at, employee_id) VALUES (1, "aaa商事との打合せ内容 xxxxx", CURRENT_TIMESTAMP, "2023-06-14", "aaa商事との打合せ内容", CURRENT_TIMESTAMP, 1);
+INSERT INTO report(id, content, created_at, report_date, title, updated_at, employee_id) VALUES (2, "bbb銀行との打合せ内容　xxxxx", CURRENT_TIMESTAMP, "2023-05-13", "bbb銀行との打合せ内容", CURRENT_TIMESTAMP, 1);
+INSERT INTO report(id, content, created_at, report_date, title, updated_at, employee_id) VALUES (3, "cccメーカーとの打合せ内容 xxxxx", CURRENT_TIMESTAMP, "2023-08-06", "cccメーカーの打合せ内容", CURRENT_TIMESTAMP, 2);
+INSERT INTO report(id, content, created_at, report_date, title, updated_at, employee_id) VALUES (4, "dddシステムとの打合せ内容　xxxxx", CURRENT_TIMESTAMP, "2023-08-23", "dddシステムとの打合せ内容", CURRENT_TIMESTAMP, 3);

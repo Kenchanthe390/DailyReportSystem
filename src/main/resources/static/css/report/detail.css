@@ -22,6 +22,10 @@ header {
     text-align: center;     /* 文字を中心に配置する */
 }
 
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+
 #header_navi ul li.sysname {
     font-size: 30px;        /* フォントサイズを30pxにする*/
 }

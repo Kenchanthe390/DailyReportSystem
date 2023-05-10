@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Detail of Employee</title>
+        <link rel="stylesheet" th:href="@{/css/report/detail.css}">
+</head>
+
+<body>
+    <header>
+        <nav id="header_navi">
+            <ul>
+                <li class="sysname">日報管理システム</li>
+                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <li><a th:href="@{/}">日報管理</a></li>
+                <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>日報 詳細ページ</h2>
+        <table th:object="${report}">
+            <tr>
+                <th>氏名</th>
+                <td th:text="*{employee.name}"></td>
+                <!-- <td th:text="*{authentication.code}"></td> -->
+            </tr>
+            <tr>
+                <th>日付</th>
+                <td th:text="*{report_date}"></td>
+            </tr>
+            <tr>
+                <th>タイトル</th>
+                <td th:text="*{title}"></td>
+            </tr>
+            <tr>
+                <th>内容</th>
+                <td ><pre th:text="*{content}"></pre></td>
+            </tr>
+            <tr>
+                <th>登録日時</th>
+                <td th:text="${#temporals.format(report.created_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+            </tr>
+            <tr>
+                <th>更新日時</th>
+                <td th:text="${#temporals.format(report.updated_at, 'yyyy/MM/dd HH:mm:ss')}"></td>
+            </tr>
+        </table>
+        <br>
+        <script th:inline="javascript">
+            var loginuserName = /*[[${#authentication.principal.employee.name}]]*/ '';
+            var reportName = /*[[${report.employee.name}]]*/ '';
+            if (loginuserName === reportName) {
+                var id = /*[[${report.id}]]*/ '';
+                var link = document.createElement('a');
+                link.href = "/report/update/" + id +"/";
+                link.textContent = "この日報を編集する";
+                document.querySelector('main').appendChild(link);
+            }
+        </script>
+        <br>
+        <a th:href="@{/report/list}">一覧に戻る</a>
+    </main>
+</body>
+</html>

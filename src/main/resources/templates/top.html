@@ -12,12 +12,35 @@
                 <li class="sysname">日報管理システム</li>
                 <li><a th:href="@{/employee/list}">従業員管理</a></li>
                 <li><a th:href="@{/}">日報管理</a></li>
-                                <li>（ログイン従業員）さん</li>
+                <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>
             </ul>
         </nav>
     </header>
     <h2>日報管理システムへようこそ</h2>
-    <h3>【自分の日報一覧】 ※改修中</h3>
-</body>
+    <h3>【自分の日報一覧】</h3>
+        <table id="list">
+            <tr>
+                <th>氏名</th>
+                <th>日付</th>
+                <th>タイトル</th>
+                <th>詳細確認</th>
+            </tr>
+                <tr th:each="lu : ${lu}">
+                <td th:text="${lu.employee.name}"></td>
+                <td th:text="${lu.report_date}"></td>
+                <td th:text="${lu.title}"></td>
+                <td><a th:href="@{/report/detail/{id}/(id=${lu.id})}">詳細を見る</a></td>
+            </tr>
+        </table>
+        <!-- テーブルのデータ件数を表示するJS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+        var rowCount = $('#list tr').length  -1 ;
+        document.write("(全 " + rowCount + " 件)");
+        </script>
+    <br>
+    <br>
+    <a th:href="@{/report/create}">新規日報の登録</a>
+    </body>
 </html>
