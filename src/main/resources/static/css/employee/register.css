@@ -38,3 +38,7 @@ a{
 main {
     margin-top: -15px; /* 上の空白を50pxに指定 */
 }
+
+.err {
+    color: red;
+}

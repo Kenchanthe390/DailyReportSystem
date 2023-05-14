@@ -11,6 +11,7 @@
             <ul>
                 <li class="sysname">日報管理システム</li>
                 <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <!-- <li th:if="${#authentication.principal.employee.authentication.role == '管理者'}"><a th:href="@{/employee/list}">従業員管理</a></li>  これだと[管理者]を代入することになってしまう-->
                 <li><a th:href="@{/}">日報管理</a></li>
                 <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>

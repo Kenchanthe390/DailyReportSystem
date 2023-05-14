@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Where;
 
@@ -33,6 +34,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(length = 20, nullable = false)
+    @NotEmpty
     private String name;
     @Column(nullable = false)
     private int delete_flag;
@@ -55,7 +57,6 @@ public class Employee {
             authentication.setEmployee(null);
         }
     }
-
 
     public Employee(int id, String name, int delete_flag, java.util.Date created_at, java.util.Date updated_at) {
     }

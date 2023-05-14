@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,11 +29,14 @@ public class Authentication {
     @Id
     @Column(length = 20, nullable = false)
     private String code;
+
     @Column(length = 255, nullable = false)
     private String password;
+
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
     @OneToOne
     @JoinColumn(name="employee_id", referencedColumnName="id")
     private Employee employee;

@@ -11,15 +11,15 @@ import com.techacademy.service.EmployeeDetail;
 
 @Controller                     //このクラスがHTTPリクエストを受け付けるクラスであること示すアノテーション
 public class TopController {
-    private final ReportService service;
+    private final ReportService reportService;
 
-    public TopController(ReportService service) {
-        this.service = service;
+    public TopController(ReportService reportService) {
+        this.reportService = reportService;
     }
 
     @GetMapping("/")            //URLに対する「GETメソッド」を受け取る関するであることを示すアノテーション
     public String getTop(@AuthenticationPrincipal EmployeeDetail userDetail, Model model) {
-        model.addAttribute("lu", service.getLoginuserReportList(userDetail.getEmployee()));
+        model.addAttribute("lu", reportService.getLoginuserReportList(userDetail.getEmployee()));
         return "/top";          //top.htmlに画面遷移
     }
 }
