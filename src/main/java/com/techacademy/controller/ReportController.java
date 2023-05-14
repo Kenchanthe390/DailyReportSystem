@@ -27,7 +27,7 @@ public class ReportController {
     @GetMapping("/create")
     public String getCreateReport(@ModelAttribute Report report, Model model) {
 //        model.addAttribute("loginUser", userDetail.getEmployee());
-        return "/report/create";
+        return "report/create";
     }
 
     /** 日報の新規登録 */
@@ -42,21 +42,21 @@ public class ReportController {
     @GetMapping("/list")
     public String getReportList(Model model){
         model.addAttribute("reportlist", service.getReportList());      //全件検索結果をModelに登録する
-        return "/report/list";                                           //report/list.htmlに画面遷移する
+        return "report/list";                                           //report/list.htmlに画面遷移する
     }
 
     /** 日報の詳細画面を表示 */
     @GetMapping("/detail/{id}/")
     public String getReportDetail(@PathVariable("id") int id, Model model) {
         model.addAttribute("report", service.getReport(id));
-        return "/report/detail";
+        return "report/detail";
     }
 
     /** 日報の更新画面を表示 */
     @GetMapping("/update/{id}/")
     public String getReportUpdate(@PathVariable("id") int id, Model model) {
         model.addAttribute("report", service.getReport(id));
-        return "/report/update";
+        return "report/update";
     }
 
     /** 日報の更新処理 */
