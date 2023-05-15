@@ -47,6 +47,10 @@ table {
     border-collapse: collapse;
 }
 
+table th{
+  background-color:#d3d3d3;
+}
+
 th, td {
     border: solid 1px black;
     padding: 10px 20px;

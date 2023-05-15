@@ -52,3 +52,11 @@ input.content{
     width:600px;
     height:200px;
 }
+
+label {
+  font-weight: bold;
+}
+
+input.title{
+    width:250px;
+}

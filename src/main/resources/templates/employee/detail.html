@@ -11,7 +11,8 @@
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <!-- 管理者権限を保有している場合は"従業員管理ページ"へ遷移できるリンクを表示する -->
+                <li><a th:if="${roleflag == 1}" th:href="@{/employee/list}">従業員管理</a></li>
                 <li><a th:href="@{/}">日報管理</a></li>
                 <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>

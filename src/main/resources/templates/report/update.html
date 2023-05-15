@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Update of Employee</title>
+    <title>Update of Report</title>
     <link rel="stylesheet" th:href="@{/css/report/update.css}">
 </head>
 <body>
@@ -10,35 +10,38 @@
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <!-- 管理者権限を保有している場合は"従業員管理ページ"へ遷移できるリンクを表示する -->
+                <li><a th:if="${roleflag == 1}" th:href="@{/employee/list}">従業員管理</a></li>
                 <li><a th:href="@{/}">日報管理</a></li>
                 <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
         <h2>日報 編集ページ</h2>
+
             <form method="post" th:action="@{/report/update/{id}/(id=${report.id})}" th:object="${report}">
-                <label for="report_date">日付</label>
+                <label for="report_date">◆日付</label>
                 <br>
                 <input type="date" th:field="*{report_date}" >
-                <br>
-                <label for="name">氏名</label>
+                <br><br>
+                <label for="name">◆氏名</label>
                 <br>
                 <input type="hidden" th:text="*{employee.name}">
+                <br><br>
+                <label for="title">◆タイトル</label>
                 <br>
-                <label for="title">タイトル</label>
-                <br>
-                <input type="text" th:field="*{title}">
-                <br>
-                <label for="content">内容</label>
+                <input class="title" type="text" th:field="*{title}">
+                <br><br>
+                <label for="content">◆内容</label>
                 <br>
                 <textarea rows="10" cols="60" th:field="*{content}"></textarea>
                 <br>
                 <input type="hidden" th:field="*{created_at}">
                 <br>
-                <input type="submit" value="投稿">
+                <input type="submit" value="更新">
                 <br>
                 <br>
                 <a th:href="@{/report/list}">更新せずに一覧に戻る</a>

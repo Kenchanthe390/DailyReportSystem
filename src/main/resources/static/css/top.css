@@ -4,8 +4,8 @@ header {
     display: flex;              /* フレックスボックスレイアウトを使用するための宣言 */
     margin: 0 auto;             /* マージンは不要 */
     width: 0 auto;              /* 横幅いっぱいまで利用する */
-    color:#ffffff;              /* 文字色は白 */
-    background-color:#000000;   /* 背景色は黒 */
+    color:#ffffff;            /* 文字色は白 */
+    background-color:#000000; /* 背景色は黒 */
 }
 
 #header_navi ul {
@@ -36,12 +36,22 @@ a{
 }
 
 main {
-    margin-top: -15px; /* 上の空白を50pxに指定 */
+    margin-top: -15px; /* 上の空白を15pxなくす */
 }
 
 table {
+    margin-top: -15px; /* 上の空白を15pxなくす */
     border-collapse: collapse;
 }
+
+table th{
+  background-color:#d3d3d3;
+}
+
+table tr:nth-child(odd){
+  background-color:#f5f5f5;
+}
+
 
 th, td {
     border: solid 1px black;

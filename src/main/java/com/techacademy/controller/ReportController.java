@@ -25,30 +25,67 @@ public class ReportController {
 
     /** 日報の新規登録画面を表示 */
     @GetMapping("/create")
-    public String getCreateReport(@ModelAttribute Report report, Model model) {
-//        model.addAttribute("loginUser", userDetail.getEmployee());
+    public String getCreateReport(@ModelAttribute Report report, @AuthenticationPrincipal EmployeeDetail userDetail, Model model) {
+
+        //ログインしているユーザーの権限情報を確認し、roleFlagの値をセットする（管理者の場合は"1"、一般の場合は"0"をセットする）
+        int roleFlag = 0;
+        String role = userDetail.getEmployee().getAuthentication().getRole().name();
+
+        if(role == "管理者") {
+            roleFlag = 1;
+        }
+
+        //ログインユーザーと日報の情報をmodelに格納し、report/create.htmlに画面遷移する
+        model.addAttribute("reportlist", service.getReportList());
+        model.addAttribute("roleflag", roleFlag);
         return "report/create";
     }
 
     /** 日報の新規登録 */
     @PostMapping("/create")
     public String postCreateReport(Report report, @AuthenticationPrincipal EmployeeDetail userDetail) {
+
+        //新規登録ページで入力されなかった内容をセットする
         report.setEmployee(userDetail.getEmployee());
+
+        //日報を登録し、report/list.htmlにリダイレクトする
         service.saveReport(report);
         return "redirect:/report/list";
     }
 
     /** 日報の一覧画面を表示 */
     @GetMapping("/list")
-    public String getReportList(Model model){
-        model.addAttribute("reportlist", service.getReportList());      //全件検索結果をModelに登録する
-        return "report/list";                                           //report/list.htmlに画面遷移する
+    public String getReportList(@AuthenticationPrincipal EmployeeDetail userDetail, Model model){
+
+        //ログインしているユーザーの権限情報を確認し、roleFlagの値をセットする（管理者の場合は"1"、一般の場合は"0"をセットする）
+        int roleFlag = 0;
+        String role = userDetail.getEmployee().getAuthentication().getRole().name();
+
+        if(role == "管理者") {
+            roleFlag = 1;
+        }
+
+        //ログインユーザーと日報の情報をmodelに格納し、report/list.htmlに画面遷移する
+        model.addAttribute("reportlist", service.getReportList());
+        model.addAttribute("roleflag", roleFlag);
+        return "report/list";
     }
 
     /** 日報の詳細画面を表示 */
     @GetMapping("/detail/{id}/")
-    public String getReportDetail(@PathVariable("id") int id, Model model) {
+    public String getReportDetail(@PathVariable("id") int id, @AuthenticationPrincipal EmployeeDetail userDetail, Model model) {
+
+        //ログインしているユーザーの権限情報を確認し、roleFlagの値をセットする（管理者の場合は"1"、一般の場合は"0"をセットする）
+        int roleFlag = 0;
+        String role = userDetail.getEmployee().getAuthentication().getRole().name();
+
+        if(role == "管理者") {
+            roleFlag = 1;
+        }
+
+        //ログインユーザーと日報の情報をmodelに格納し、report/detail.htmlに画面遷移する
         model.addAttribute("report", service.getReport(id));
+        model.addAttribute("roleflag", roleFlag);
         return "report/detail";
     }
 

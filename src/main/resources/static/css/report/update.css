@@ -47,3 +47,11 @@ th, td {
     border: solid 1px black;
     padding: 10px 20px;
 }
+
+label {
+  font-weight: bold;
+}
+
+input.title{
+    width:250px;
+}

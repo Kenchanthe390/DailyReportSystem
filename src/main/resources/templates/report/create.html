@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Register of Employee</title>
+    <title>Create of Report</title>
     <link rel="stylesheet" th:href="@{/css/report/create.css}">
 </head>
-
 <body>
     <header>
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <!-- 管理者権限を保有している場合は"従業員管理ページ"へ遷移できるリンクを表示する -->
+                <li><a th:if="${roleflag == 1}" th:href="@{/employee/list}">従業員管理</a></li>
                 <li><a th:href="@{/}">日報管理</a></li>
                 <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>
@@ -21,27 +21,50 @@
     <main>
         <h2>日報 新規登録ページ</h2>
             <form method="post" th:action="@{/report/create}" th:object="${report}">
-                <label for="report_date">日付</label>
+                <label for="report_date">◆日付</label>
                 <br>
-                <input type="date" value="YYYY-MM-DD" th:field="*{report_date}">
-                <br>
-                <label for="name">氏名</label>
+                <!-- 初期値を今日日付でセットするためにidをつける（JSはformタグ以下に記載） -->
+                <input type="date" id="today" th:field="*{report_date}">
+                <br><br>
+                <label for="name">◆氏名</label>
                 <br>
                 <input type="hidden" th:text="${#authentication.principal.employee.name}" >
+                <br><br>
+                <label for="title">◆タイトル</label>
                 <br>
-                <label for="title">タイトル</label>
-                <br>
-                <input type="text" th:field="*{title}">
-                <br>
-                <label for="content">内容</label>
+                <input class="title" type="text" th:field="*{title}">
+                <br><br>
+                <label for="content">◆内容</label>
                 <br>
                 <textarea rows="10" cols="60" th:field="*{content}"></textarea>
-                <br>
-                <br>
+                <br><br>
                 <input type="submit" value="投稿">
             </form>
+
+            <!-- 今日日付をセットするためのJS -->
+            <script type="text/javascript">
+            window.onload = function () {
+                var date = new Date()
+                var year = date.getFullYear()
+                var month = date.getMonth() + 1
+                var day = date.getDate()
+                var toTwoDigits = function (num, digit) {
+                    num += ''
+                    if (num.length < digit) {
+                    num = '0' + num
+                    }
+                return num
+                }
+            var yyyy = toTwoDigits(year, 4)
+            var mm = toTwoDigits(month, 2)
+            var dd = toTwoDigits(day, 2)
+            var ymd = yyyy + "-" + mm + "-" + dd;
+            document.getElementById("today").value = ymd;
+            }
+            </script>
+
         <br>
-        <a th:href="@{/report/list}">一覧に戻る</a>
+        <a th:href="@{/report/list}">登録せずに一覧に戻る</a>
     </main>
 </body>
 </html>

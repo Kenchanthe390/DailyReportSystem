@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>List of Employee</title>
+    <title>List of Report</title>
     <link rel="stylesheet" th:href="@{/css/report/list.css}">
 </head>
 <body>
@@ -10,7 +10,8 @@
         <nav id="header_navi">
             <ul>
                 <li class="sysname">日報管理システム</li>
-                <li><a th:href="@{/employee/list}">従業員管理</a></li>
+                <!-- 管理者権限を保有している場合は"従業員管理ページ"へ遷移できるリンクを表示する -->
+                <li><a th:if="${roleflag == 1}" th:href="@{/employee/list}">従業員管理</a></li>
                 <li><a th:href="@{/}">日報管理</a></li>
                 <li><span th:text="${#authentication.principal.employee.name}"></span> さん</li>
                 <li><a th:href="@{/logout}">ログアウト</a></li>
@@ -19,29 +20,33 @@
     </header>
     <main>
          <h2>日報 一覧</h2>
+
+         <h3>【全員の日報一覧】</h3>
+
             <table id="list">
-            <tr>
-                <th>氏名</th>
-                <th>日付</th>
-                <th>タイトル</th>
-                <th>詳細確認</th>
-            </tr>
-            <tr th:each="report : ${reportlist}">
-                <td th:text="${report.employee.name}"></td>
-                <td th:text="${report.report_date}"></td>
-                <td th:text="${report.title}"></td>
-                <td><a th:href="@{/report/detail/{id}/(id=${report.id})}">詳細を見る</a></td>
-            </tr>
-        </table>
-        <!-- テーブルのデータ件数を表示するJS -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-        var rowCount = $('#list tr').length  -1 ;
-        document.write("(全 " + rowCount + " 件)");
-        </script>
-    <br>
-    <br>
-    <a th:href="@{/report/create}">新規日報の登録</a>
+                <tr>
+                    <th>氏名</th>
+                    <th>日付</th>
+                    <th>タイトル</th>
+                    <th>詳細確認</th>
+                </tr>
+                <tr th:each="report : ${reportlist}">
+                    <td th:text="${report.employee.name}"></td>
+                    <td th:text="${report.report_date}"></td>
+                    <td th:text="${report.title}"></td>
+                    <td><a th:href="@{/report/detail/{id}/(id=${report.id})}">詳細を見る</a></td>
+                </tr>
+            </table>
+
+            <!-- テーブルのデータ件数を表示するJS -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+            var rowCount = $('#list tr').length  -1 ;
+            document.write("(全 " + rowCount + " 件)");
+            </script>
+        <br>
+        <br>
+        <a th:href="@{/report/create}">新規日報の登録</a>
     </main>
 </body>
 </html>

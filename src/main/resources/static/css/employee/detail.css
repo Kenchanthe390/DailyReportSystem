@@ -36,11 +36,15 @@ a{
 }
 
 main {
-    margin-top: -15px; /* 上の空白を50pxに指定 */
+    margin-top: -15px; /* 上の空白を15pxなくす */
 }
 
 table {
     border-collapse: collapse;
+}
+
+table th{
+  background-color:#d3d3d3;
 }
 
 th, td {
