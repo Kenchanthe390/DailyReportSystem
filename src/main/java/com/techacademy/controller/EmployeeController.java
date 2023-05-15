@@ -26,8 +26,10 @@ public class EmployeeController {
     /** 従業員の一覧画面を表示 */
     @GetMapping("/list")
     public String getEmployeeList(Model model) {
-        model.addAttribute("employeelist", service.getEmployeeList());      //全件検索結果をModelに登録する
-        return "employee/list";                                             //employee/list.htmlに画面遷移する
+
+        //従業員情報の全件検索結果をModelに登録し、employee/list.htmlに画面遷移する
+        model.addAttribute("employeelist", service.getEmployeeList());
+        return "employee/list";
     }
 
     /** 従業員の詳細画面を表示 */

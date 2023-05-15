@@ -35,6 +35,11 @@ a{
     color:#0000ee;
 }
 
+p{
+    margin-top: 3px; /* 上の空白を3pxに指定 */
+    margin-bottom: 0px;
+}
+
 main {
     margin-top: -15px; /* 上の空白を50pxに指定 */
 }

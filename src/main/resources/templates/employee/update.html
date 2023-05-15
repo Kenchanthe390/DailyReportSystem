@@ -19,33 +19,41 @@
     </header>
     <main>
         <h2 th:object="${employee}">id:<td th:text="*{id}"></td>の従業員情報 編集ページ</h2>
-        <p>※パスワードは変更する場合のみ入力してください</p>
-            <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
-                <label for="code">社員番号</label>
+            <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}" >
+                <label for="code">◆社員番号</label>
                 <br>
                 <input type="hidden" th:field="*{authentication.code}" th:text="*{authentication.code}">
-                <br>
-                <label for="name">氏名</label>
+                <br><br>
+
+                <label for="name">◆氏名</label>
                 <br>
                 <input type="text" th:field="*{name}">
-                <br>
-                <label for="password">パスワード</label>
+                <br><br>
+
+                <label for="password">◆パスワード</label>
                 <br>
                 <input type="text" th:field="*{authentication.password}">
+                <p>※パスワードは変更する場合のみ入力してください</p>
                 <br>
-                <label for="role">権限</label>
+
+                <label for="role">◆権限</label>
                 <br>
                 <select th:field="*{authentication.role}">
                     <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
                 </select>
                 <br>
+
                 <input type="hidden" th:field="*{created_at}">
                 <br>
-                <input type="submit" value="更新実行">
+
+                <input type="submit" value="更新">
                 <br>
                 <br>
-                <a th:href="@{/employee/delete/{id}/(id=${employee.id})}" >この従業員情報を削除する</a>
+
+                <a id="deleteRun" th:href="@{/employee/delete/{id}/(id=${employee.id})}" >この従業員情報を削除する</a>
+                <script th:src="@{/js/employee/delete.js}"></script>
                 <br>
+
                 <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
             </form>
     </main>

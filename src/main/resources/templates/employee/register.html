@@ -19,35 +19,37 @@
         </nav>
     </header>
     <main>
-        <h2>新規従業員 登録ページ</h2>
-        <form method="post" th:action="@{/employee/register}" th:object="${employee}">      <!-- th:action でformのPOST先のURLを指定する。 -->
-            <label for="code">社員番号</label>                                                <!-- th:object はModelに登録されたキー名を指定する。th:field では *{name} のようにキーを省略して記述できる-->
-            <br>
-            <input type="text" th:field="*{authentication.code}" th:errorclass="err">
-            <span th:errors="*{authentication.code}" class="err"></span>
-            <br>
-            <label for="name">氏名</label>
-            <br>
-            <input type="text" th:field="*{name}" th:errorclass="err">
-            <span th:errors="*{name}" class="err"></span>
-            <br>
+        <h2>従業員 新規登録ページ</h2>
+            <form method="post" th:action="@{/employee/register}" th:object="${employee}">      <!-- th:action でformのPOST先のURLを指定する。 -->
+                <label for="code">◆社員番号</label>                                                <!-- th:object はModelに登録されたキー名を指定する。th:field では *{name} のようにキーを省略して記述できる-->
+                <br>
+                <input type="text" th:field="*{authentication.code}" th:errorclass="err">
+                <span th:errors="*{authentication.code}" class="err"></span>
+                <br><br>
 
-            <label for="password">パスワード</label>
-            <br>
-            <input type="text" th:field="*{authentication.password}" th:errorclass="err">
-            <span th:errors="*{authentication.password}" class="err"></span>
-            <br>
+                <label for="name">◆氏名</label>
+                <br>
+                <input type="text" th:field="*{name}" th:errorclass="err">
+                <span th:errors="*{name}" class="err"></span>
+                <br><br>
 
-            <label for="role">権限</label>
-            <br>
-            <select th:field="*{authentication.role}" >
-                <option value="" th:text="選択してください">
-                <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
-            </select>
-            <br>
-            <br>
-            <input type="submit" value="登録">
-        </form>
+                <label for="password">◆パスワード</label>
+                <br>
+                <input type="text" th:field="*{authentication.password}" th:errorclass="err">
+                <span th:errors="*{authentication.password}" class="err"></span>
+                <br><br>
+
+                <label for="role">◆権限</label>
+                <br>
+                <select th:field="*{authentication.role}" >
+                    <option value="" th:text="選択してください">
+                    <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
+                </select>
+                <br>
+                <br>
+
+                <input type="submit" value="登録">
+            </form>
         <br>
         <a th:href="@{/employee/list}">一覧に戻る</a>
     </main>
