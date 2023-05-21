@@ -35,37 +35,49 @@ public class EmployeeController {
     /** 従業員の詳細画面を表示 */
     @GetMapping("/detail/{id}/")
     public String getEmployeeDetail(@PathVariable("id") int id, Model model) {
+
+        //idで検索した従業員情報をModelに登録し、employee/detail.htmlに画面遷移する
         model.addAttribute("employee", service.getEmployee(id));
         return "employee/detail";
     }
 
-    /** 新規従業員の登録画面を表示 */
+    /** 従業員の新規登録画面を表示 */
     @GetMapping("/register")
-    public String getRegister(@ModelAttribute Employee employee) {      //@ModelAttributeアノテーションを付与すると、自動的に（テンプレートにデータを受け渡す）Modelにインスタンスが登録される(≒@ModelAttributeアノテーションを付与せずに model.addAttribute("employee", employee); と記述することと同一）
-        return "employee/register";                                     //テンプレート側では employee を使い <input type="text" th:field="${employee.name}> のように記述できる
+    public String getRegister(@ModelAttribute Employee employee) {
+        //@ModelAttributeアノテーションを付与すると、自動的にModelにインスタンスが登録される(≒@ModelAttributeアノテーションを付与せずに model.addAttribute("employee", employee); と記述することと同一）
+        //テンプレート側では employee を使い <input type="text" th:field="${employee.name}> のように記述できる
+
+        //employee/register.htmlに画面遷移する
+        return "employee/register";
         }
 
-    /** 従業員の登録処理 */
+    /** 従業員の新規登録処理 */
     @PostMapping("/register")
     public String postRegister(@Validated Employee employee, BindingResult res) {
         if(res.hasErrors()) {
-            // エラーあり
+            //エラーあり
             return getRegister(employee);
         }
-        service.saveEmployee(employee);     // 従業員の登録する
-        return "redirect:/employee/list";   // 従業員の一覧画面にリダイレクトする
+
+        //従業員情報を新規登録し、一覧画面にリダイレクトする
+        service.saveEmployee(employee);
+        return "redirect:/employee/list";
     }
 
     /** 従業員の更新画面を表示 */
     @GetMapping("/update/{id}/")
     public String getEmployee(@PathVariable("id") int id, Model model) {
+
+        //idで検索した従業員情報をModelに登録し、employee/update.htmlに画面遷移する
         model.addAttribute("employee", service.getEmployee(id));
         return "employee/update";
     }
 
-    /**  従業員の更新処理 */
+    /** 従業員の更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
+
+        //従業員情報を更新し、一覧画面にリダイレクトする
         service.updateEmployee(employee);
         return "redirect:/employee/list";
     }
@@ -73,8 +85,9 @@ public class EmployeeController {
     /** 従業員の削除処理（deleteフラグに"1"を記入する） */
     @GetMapping("/delete/{id}/")
     public String deleteEmployee(@PathVariable("id") int id, Employee employee) {
-        employee = service.getEmployee(id);
-        service.deleteEmployee(employee);
+
+        //授業員の削除処理をし、一覧画面にリダイレクトする
+        service.deleteEmployee(service.getEmployee(id));
         return "redirect:/employee/list";
     }
 }

@@ -91,15 +91,30 @@ public class ReportController {
 
     /** 日報の更新画面を表示 */
     @GetMapping("/update/{id}/")
-    public String getReportUpdate(@PathVariable("id") int id, Model model) {
+    public String getReportUpdate(@PathVariable("id") int id, @AuthenticationPrincipal EmployeeDetail userDetail, Model model) {
+
+        //ログインしているユーザーの権限情報を確認し、roleFlagの値をセットする（管理者の場合は"1"、一般の場合は"0"をセットする）
+        int roleFlag = 0;
+        String role = userDetail.getEmployee().getAuthentication().getRole().name();
+
+        if(role == "管理者") {
+            roleFlag = 1;
+        }
+
+        //ログインユーザーと日報の情報をmodelに格納し、report/update.htmlに画面遷移する
         model.addAttribute("report", service.getReport(id));
+        model.addAttribute("roleflag", roleFlag);
         return "report/update";
     }
 
     /** 日報の更新処理 */
     @PostMapping("/update/{id}/")
     public String postReportUpdate(Report report, @AuthenticationPrincipal EmployeeDetail userDetail) {
+
+        //更新ページで入力されなかった内容をセットする
         report.setEmployee(userDetail.getEmployee());
+
+        //日報を更新し、report/list.htmlにリダイレクトする
         service.updateReport(report);
         return "redirect:/report/list";
     }

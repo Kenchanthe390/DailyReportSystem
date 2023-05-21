@@ -13,4 +13,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, String>{
 
     void deleteById(Integer id);
 
+    Employee findByAuthenticationCode(String code);
 }
